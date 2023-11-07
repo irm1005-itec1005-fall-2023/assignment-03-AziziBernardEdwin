@@ -67,23 +67,6 @@ let todo ={
 }
 
 
-
-
-// Function to remove a todo to the list
-// It should accept a number as a parameter (id of the todo item)
-// Loop through the array of todos, and when you find the todo item with the id
-// that matches the id passed to the function, remove it from the array
-// the function does not need to return anything
-function removeToDoItem(todoId) {
-  // Implement the logic to add a task here
-
-  for (let i = 0; i <todoItems.length; i++){
-    console.log("I am in a for loop")
-  };
-
-
-}
-
 // Function to mark a task as completed
 // It should accept a number as a parameter (id of the todo item)
 // Loop through the array of todos, and when you find the todo item with the id
@@ -109,6 +92,10 @@ const index = todoItems.findIndex(todo => todo.id === todoID);
 function deleteToDoItem(todoId) {
   // Implement the logic to remove a task here
 if (!!todo === false) return false
+
+for (let i = 0; i <todoItems.length; i++){
+  console.log("I am in a for loop")
+};
 
   const todoIndex = todoItems.findIndex(todo => todo.id === todoId);
  
