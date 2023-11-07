@@ -78,7 +78,7 @@ function removeToDoItem(todoId) {
   // Implement the logic to add a task here
 
   for (let i = 0; 1 <todoItems.length; i++);
-  
+
 
 }
 
@@ -90,10 +90,11 @@ function removeToDoItem(todoId) {
 function markToDoItemAsCompleted(todoId) {
   // Implement the logic to mark a task as completed here
 
-const todo = todoItems.find(todo => todo.id === todoId);
-if (todo) {
-  todo.completed = true
-}
+// This is for null handling check if the IDs do not pass properly
+if (!!todoID === false) return
+
+// 
+const index = todoItems.findIndex(todo => todo.id === todoID);
 
 }
 
@@ -105,13 +106,21 @@ if (todo) {
 // true or false depending on whether the item was successfully deleted
 function deleteToDoItem(todoId) {
   // Implement the logic to remove a task here
+if (!!todo === false) return false
 
   const todoIndex = todoItems.findIndex(todo => todo.id === todoId);
-if (index !== -1){
+ 
+// if the searched todoitem exists
+if (index >= 0){
   todoItems.splice(index,1);
+  return true }
+  else {
+  return false
+  }
+
 }
  
-}
+
 
 // Function to clear all completed tasks
 // Loop through the array of todos, and when you find a todo item that is marked
@@ -119,7 +128,35 @@ if (index !== -1){
 function clearCompletedTasks() {
   // Implement the logic to clear completed tasks here
 todoItems = todoitems.filter(todo => !todo.completed);
+
+// Does checks to see if there are toDoItems that have tasks that are completed
+const hasCompletedTasks = todoitems.some(todo => todo.completed == true)
+if (hasCompletedTasks == true) {
+  todoItems = todoitems.filter(todo => todo.completed == true)
+} else {
+  console.log("Completed Tasks are already cleared in the ToDoList")
 }
+}
+
+// Dataset for testing
+const test_data = [
+  "Todo Test 1",
+	"Todo Test 2",
+	"Todo Test 3",
+	"Todo Test 5",
+	"Todo Test 6",
+	"Todo Test 0",
+	"Todo Test 112",
+	"Todo Test 2",
+	"Todo Test -1",
+	null,
+	undefined,
+	2,
+	'5',
+	false,
+	true,
+  1.2,
+];
 
 // You can write your own tests here if you would like to test
 // your code before using the automated tests
@@ -128,3 +165,4 @@ todoItems = todoitems.filter(todo => !todo.completed);
 //  console.log(todoItems); // This should show the todo item you added
 //  removeToDoItem(0); // This should remove the todo item with ID 0 from the array
 //  markToDoItemAsCompleted(0); // This should mark the todo item with ID 0 as completed
+
