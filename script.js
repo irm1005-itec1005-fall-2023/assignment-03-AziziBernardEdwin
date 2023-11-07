@@ -77,7 +77,7 @@ let todo ={
 function removeToDoItem(todoId) {
   // Implement the logic to add a task here
 
-  for (let i = 0; 1 <todoItems.length; i++){
+  for (let i = 0; i <todoItems.length; i++){
     console.log("I am in a for loop")
   };
 
