@@ -42,8 +42,8 @@
 //   text: "This is a todo item",
 //   completed: false,
 // }
-let todoItems= [];  
-let nextID = 1;
+let todoItems = [];
+let nextId = 1;
 
 
 // Initialise an empty array with the variable name todoItems
@@ -53,18 +53,21 @@ let nextID = 1;
 // It should accept a string as a parameter (text of the todo item)
 // and it should add a new todo item to the todoItems array
 // the function does not need to return anything
-function addToDoItem(text) {
+function addToDoItem(text){
   // Implement the logic to add a task here
+  
+  if (typeof text !== 'string' || text.trim() === '') {
+    console.error('Invalid text for a to-do item');
+    return false;
+  }
 
-let todo ={
-  id: nextID,
-  text: text,
-  completed: false,
+  const newTodo = {
+    id: nextId++,
+    text: text,
+    completed: false
   };
-
-  todoItems.push(todo)
-  nextID++;
-  console.log(todo); // Remove this line when you start working on the function
+  todoItems.push(newTodo);
+  return true;
 }
 
 
@@ -76,16 +79,20 @@ let todo ={
 function markToDoItemAsCompleted(todoId) {
   // Implement the logic to mark a task as completed here
   
-  const todoIndex = todoItems.findIndex((todo) => todo.id === todoId);
-  if (todoIndex !== -1) {
-    todoItems[todoIndex].completed = true;
+  const todo = todoItems.find(todo => todo.id === todoId);
+  if (!todo) {
+    console.error(`Todo item with ID ${todoId} not found.`);
+    return false;
   }
 
-    // This is for null handling check if the IDs do not pass properly
-if (!!todoID === false) return
+  if (todo.completed) {
+    console.error(`Todo item with ID ${todoId} is already marked as completed.`);
+    return false;
+  }
 
+  todo.completed = true;
+  return true;
 }
-
 // Function to delete a task from the array
 // It should accept a number as a parameter (id of the todo item)
 // Loop through the array of todos, and when you find the todo item with the id
@@ -94,24 +101,37 @@ if (!!todoID === false) return
 // true or false depending on whether the item was successfully deleted
 function deleteToDoItem(todoId) {
   // Implement the logic to remove a task here
-if (!!todo === false) return ;
-
-for (let i = 0; i <todoItems.length; i++){
-  console.log("I am in a for loop")
-};
-
-  const todoIndex = todoItems.findIndex(todo => todo.id === todoId);
- 
-// if the searched todoitem exists
-if (index !== -1){
+  
+  const index = todoItems.findIndex(todo => todo.id === todoId);
+  if (index === -1) {
+    console.error(`Todo item with ID ${todoId} not found.`);
+    return false;
+  }
+  
   todoItems.splice(index, 1);
   return true;
- } else {
-  return false;
-  }
-
 }
- 
+
+
+// Function to delete a task from the array
+// It should accept a number as a parameter (id of the todo item)
+// Loop through the array of todos, and when you find the todo item with the id
+// that matches the id passed to the function, remove it from the array
+// the function does not need to return anything, though you can return
+// true or false depending on whether the item was successfully deleted
+function removeToDoItem(todoId) {
+  // Implement the logic to remove a task here
+
+  const index = todoItems.findIndex(todo => todo.id === todoId);
+  if (index === -1) {
+    console.error(`Todo item with ID ${todoId} not found.`);
+    return false;
+  }
+  
+  todoItems.splice(index, 1);
+  return true;
+  
+}
 
 
 // Function to clear all completed tasks
@@ -119,37 +139,18 @@ if (index !== -1){
 // as completed, remove it completely from the array
 function clearCompletedTasks() {
   // Implement the logic to clear completed tasks here
-todoItems = todoItems.filter((todo) => !todo.completed);
+  const initialLength = todoItems.length;
+  todoItems = todoItems.filter(todo => !todo.completed);
 
-// Does checks to see if there are toDoItems that have tasks that are completed
-const hasCompletedTasks = todoItems.some(todo => todo.completed == true)
+  if (todoItems.length === initialLength) {
+    console.error('No completed tasks to clear.');
+    return false;
+  }
+  
+  return true;
 
-if (hasCompletedTasks == true) {
-console.log("All Tasks Cleared in todoList")
-} else {
-  console.log("Completed Tasks are already cleared in the ToDoList")
 }
-}
 
-// Dataset for testing
-const test_data = [
-  "Todo Test 1",
-	"Todo Test 2",
-	"Todo Test 3",
-	"Todo Test 5",
-	"Todo Test 6",
-	"Todo Test 0",
-	"Todo Test 112",
-	"Todo Test 2",
-	"Todo Test -1",
-	null,
-	undefined,
-	2,
-	'5',
-	false,
-	true,
-  1.2,
-];
 
 // You can write your own tests here if you would like to test
 // your code before using the automated tests
