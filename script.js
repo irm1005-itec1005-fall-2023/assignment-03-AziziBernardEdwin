@@ -94,7 +94,7 @@ if (!!todoID === false) return
 // true or false depending on whether the item was successfully deleted
 function deleteToDoItem(todoId) {
   // Implement the logic to remove a task here
-if (!!todo === false) return false
+if (!!todo === false) return ;
 
 for (let i = 0; i <todoItems.length; i++){
   console.log("I am in a for loop")
@@ -105,9 +105,9 @@ for (let i = 0; i <todoItems.length; i++){
 // if the searched todoitem exists
 if (index !== -1){
   todoItems.splice(index, 1);
-  return true }
-  else {
-  return false
+  return true;
+ } else {
+  return false;
   }
 
 }
@@ -119,10 +119,10 @@ if (index !== -1){
 // as completed, remove it completely from the array
 function clearCompletedTasks() {
   // Implement the logic to clear completed tasks here
-todoItems = todoitems.filter((todo) => !todo.completed);
+todoItems = todoItems.filter((todo) => !todo.completed);
 
 // Does checks to see if there are toDoItems that have tasks that are completed
-const hasCompletedTasks = todoitems.some(todo => todo.completed == true)
+const hasCompletedTasks = todoItems.some(todo => todo.completed == true)
 
 if (hasCompletedTasks == true) {
 console.log("All Tasks Cleared in todoList")
