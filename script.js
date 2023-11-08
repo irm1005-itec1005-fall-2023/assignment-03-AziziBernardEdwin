@@ -121,16 +121,11 @@ function clearCompletedTasks() {
   // Implement the logic to clear completed tasks here
 todoItems = todoitems.filter((todo) => !todo.completed);
 
-let todo ={
-  id: nextID++,
-  text: text,
-  completed: false,
-  };
-
 // Does checks to see if there are toDoItems that have tasks that are completed
 const hasCompletedTasks = todoitems.some(todo => todo.completed == true)
+
 if (hasCompletedTasks == true) {
-  todoItems = todoitems.filter(todo => todo.completed == true)
+console.log("All Tasks Cleared in todoList")
 } else {
   console.log("Completed Tasks are already cleared in the ToDoList")
 }
